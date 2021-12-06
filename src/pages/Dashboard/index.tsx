@@ -64,7 +64,7 @@ export const Dashboard: React.FC = () => {
       setRepos([...repos, repository]);
       formEl.current?.reset();
       setNewRepo('');
-      setInputError();
+      setInputError('');
     } catch {
       setInputError('Repositório não encontrado no GitHub');
     }
@@ -90,10 +90,10 @@ export const Dashboard: React.FC = () => {
       {inputError && <Erro>{inputError}</Erro>}
 
       <Repos>
-        {repos.map(repository => (
+        {repos.map((repository, index) => (
           <Link
             to={`/repositories/${repository.full_name}`}
-            key={repository.full_name}
+            key={repository.full_name + index}
           >
             <img
               src={repository.owner.avatar_url}
